@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsTestProject>true</IsTestProject>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.4.0" />
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" PrivateAssets="all" />
+    <!-- Use Sonar's metric directly in tests without enabling its unrelated compiler rules. -->
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.35.0.4138" GeneratePathProperty="true" PrivateAssets="all" ExcludeAssets="all" />
+    <Reference Include="SonarAnalyzer.CSharp">
+      <HintPath>$(PkgSonarAnalyzer_CSharp)/analyzers/SonarAnalyzer.CSharp.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="../FLEE.Core/FLEE.Core.csproj" />
+    <Compile Include="../FLEE/Controls/PlotEnvelope.cs" Link="PlotEnvelope.cs" />
+    <Compile Include="../FLEE/Controls/PlotViewport.cs" Link="PlotViewport.cs" />
+    <Compile Include="../FLEE/Controls/AxisTicks.cs" Link="AxisTicks.cs" />
+    <Content Include="../FLEE.Core/**/*.cs" Exclude="../FLEE.Core/bin/**;../FLEE.Core/obj/**"
+             Link="CoreSource/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="../FLEE/**/*.cs" Exclude="../FLEE/bin/**;../FLEE/obj/**"
+             Link="AppSource/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <Target Name="UseSonarMetricWithoutCompilerAnalyzers" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <Analyzer Remove="@(Analyzer)" Condition="'%(Analyzer.Filename)' == 'SonarAnalyzer.CSharp'" />
+    </ItemGroup>
+  </Target>
+</Project>

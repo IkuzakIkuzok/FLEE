@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="DEVELOPMENT.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="FLEE.App.Tests/FLEE.App.Tests.csproj" />
+  <Project Path="FLEE.Core.Tests/FLEE.Core.Tests.csproj" />
+  <Project Path="FLEE.Core/FLEE.Core.csproj" />
+  <Project Path="FLEE/FLEE.csproj" />
+</Solution>

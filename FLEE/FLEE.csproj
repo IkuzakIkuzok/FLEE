@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PublishAot>true</PublishAot>
+    <!-- Allow the tested WinForms Native AOT publishing path; retain trim/AOT warnings. -->
+    <_SuppressWinFormsTrimError Condition="'$(PublishAot)' == 'true'">true</_SuppressWinFormsTrimError>
+    <ApplicationIcon>Assets\Flee.ico</ApplicationIcon>
+    <Product>FLEE — Fluorescence Lifetime Exchange Engine</Product>
+    <Description>Fluorescence Lifetime Exchange Engine</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FLEE.Core\FLEE.Core.csproj" />
+    <InternalsVisibleTo Include="FLEE.App.Tests" />
+    <EmbeddedResource Include="Assets\Flee.ico" LogicalName="FLEE.Assets.Flee.ico" />
+    <!-- Both source files declare MainForm; give the layout resource its own name. -->
+    <EmbeddedResource Update="MainForm.Layout.resx" ManifestResourceName="FLEE.MainForm.Layout" />
+  </ItemGroup>
+
+</Project>
