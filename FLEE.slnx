@@ -1,6 +1,9 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
     <File Path="DEVELOPMENT.md" />
+    <File Path="LICENSE.txt" />
     <File Path="README.md" />
   </Folder>
   <Project Path="FLEE.App.Tests/FLEE.App.Tests.csproj" />
